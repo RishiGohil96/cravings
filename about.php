@@ -20,7 +20,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/about.css" rel="stylesheet" type="text/css" media="all" /><!-- about css -->
 <link href="css/services.css" rel="stylesheet" type="text/css" media="all" /><!-- services css -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-
+<link rel="stylesheet" type="text/css" href="css/pace.css" media="all">  <!-- pace css -->
 <link href="css/font-awesome.css" rel="stylesheet"> <!-- fontawesome css -->
 <!--fonts-->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
@@ -95,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- about section content -->
 <div class="about_section">
-	<div class="container white-bg">
+	<div class="container white-bg pad-20">
 		<div class="col-md-6 about-left">
 			<div class="col-md-6 cakeimg">
 				<img src="images/cakes/birthday/other/222.jpg" alt="image" />
@@ -118,7 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //about section content -->
 <!-- stats -->
 	<div class="stats" id="stats">
-	    <div class="container white-bg">
+	    <div class="container white-bg pad-20">
 		<h3 class="heading">Stats</h3>
 			<div class="inner_w3l_agile_grids">
 		<div class="col-md-3 w3layouts_stats_left w3_counter_grid">
@@ -281,6 +281,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.redirect.js" charset="utf-8"></script>
 <!-- //Supportive js -->
 
+<script src="js/pace.min.js"></script>
 <!-- google sign in -->
 
 <script type="text/javascript">

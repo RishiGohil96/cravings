@@ -19,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap css -->
 <link href="css/contact.css" rel="stylesheet" type="text/css" media="all" /><!-- contact css -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-
+<link rel="stylesheet" type="text/css" href="css/pace.css" media="all">  <!-- pace css -->
 <link href="css/font-awesome.css" rel="stylesheet"> <!-- fontawesome css -->
 
 <!--fonts-->
@@ -28,7 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//fonts-->
 <style>
 		#map{
-				height:  400px;
+				height:  380px;
 		}
 </style>
 </head>
@@ -138,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- //map -->
 			<div class="clearfix"> </div>
-			<div class="mail_grid_w3l white-bg">
+			<div class="mail_grid_w3l white-bg pad-20 pad-side">
 				<form action="#" method="post">
 					<div class="col-md-6 contact_left_grid">
 						<div class="contact-fields-w3ls">
@@ -259,7 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery.redirect.js" charset="utf-8"></script>
 <!-- //Supportive js -->
-
+<script src="js/pace.min.js"></script>
 <!-- google sign in -->
 
 <script type="text/javascript">

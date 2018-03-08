@@ -55,6 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <link href="css/font-awesome.css" rel="stylesheet">
         <!-- fontawesome css -->
         <link rel="stylesheet" href="css/sweetalert.css">
+        <link rel="stylesheet" type="text/css" href="css/pace.css" media="all">  <!-- pace css -->
         <!--fonts-->
         <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
         <link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
@@ -133,7 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <!-- cake info -->
         <section class="cake-info">
-            <div class="container white-bg">
+            <div class="container white-bg pad-20">
                 <div class="col-md-4 col-sm-4">
                     <img src="<?php echo $location ?>" alt="cake" class="cake-info-image">
                 </div>
@@ -264,6 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
         <script src="js/jquery.redirect.js" charset="utf-8"></script>
         <script src="js/sweetalert.min.js"></script>
+        <script src="js/pace.min.js"></script>
         <!-- //Supportive js -->
 
         <!-- google sign in -->
@@ -281,7 +283,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     name: name,
                     img_url: img_url,
                     email: email,
-                    redirect_location: 'item.php',
+                    redirect_location: 'item.php?q=<?php echo $cake_id ?>',
                     q: <?php echo $cake_id ?>
                 });
             }

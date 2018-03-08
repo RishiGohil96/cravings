@@ -19,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap css -->
 <link href="css/gallery.css" rel="stylesheet" type="text/css" media="all" /><!-- gallery css -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-
+<link rel="stylesheet" href="css/pace.css" type="text/css" media="all"> <!-- pace css -->
 
 <link href="css/font-awesome.css" rel="stylesheet"><!-- fontawesome css -->
 <!--fonts-->
@@ -273,7 +273,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <!-- //Supportive js -->
 <script type="text/javascript" src="js/bootstrap.js"></script><!-- bootstrap js file -->
-
+<script src="js/pace.min.js"></script>
 
 
 <!-- smooth scrolling js -->

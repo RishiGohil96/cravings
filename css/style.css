@@ -2544,4 +2544,12 @@ body, .background{
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.pad-20{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.pad-side{
+    padding-left: 10px;
+    padding-right: 10px;
+}
 

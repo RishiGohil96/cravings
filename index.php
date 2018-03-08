@@ -24,7 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="css/animate.min.css">
 <link rel="stylesheet" href="css/rotate.css">
 <!--	//modal -->
-
+<link rel="stylesheet" type="text/css" href="css/pace.css" media="all">  <!-- pace css -->
 <link href="css/font-awesome.css" rel="stylesheet"> <!-- fontawesome css -->
 <link rel="stylesheet" href="css/sweetalert.css">
 <!--fonts-->
@@ -186,7 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //banner slider -->
 <!-- welcome -->
 <div class="welcome"  id="about">
-	<div class="container white-bg">
+	<div class="container white-bg pad-20">
 		<div class="col-md-6 welcome-w3lright">
 			<div class="pad-top-50">
 				<div> <img src="images/cravings_shop.jpg" alt="" class="img-responsive" /> </div>
@@ -311,7 +311,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <!-- team -->
-<Div class="center">
+<div class="center">
 	<div class="team" id="team">
 	   <div class="agile_dot_info two" >
 		<div class="container" >
@@ -354,7 +354,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //team -->
 <!-- testimonials -->
 	<div class="testimonials">
-		<div class="container white-bg">
+		<div class="container white-bg pad-20">
 		<h3 class="heading">Our Customer reviews</h3>
 			<div class="testimonials-grids">
 				<div class="wmuSlider example1 animated wow slideInUp" data-wow-delay=".5s">
@@ -519,37 +519,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.redirect.js" charset="utf-8"></script>
 <script src="js/sweetalert.min.js"></script>
 <!-- //Supportive js -->
-
-<!-- modal -->
-<script src="js/animatedModal.min.js"></script>
-
-<script>
-
-
-
-		//demo 02
-		$("#demo02").animatedModal({
-				modalTarget:'modal-02',
-				animatedIn:'bounceInDown',
-				animatedOut:'bounceOutDown',
-				color:'#3498db',
-				// Callbacks
-				beforeOpen: function() {
-						console.log("The animation was called");
-				},
-				afterOpen: function() {
-						console.log("The animation is completed");
-				},
-				beforeClose: function() {
-						console.log("The animation was called");
-				},
-				afterClose: function() {
-						console.log("The animation is completed");
-				}
-		});
-
-</script>
-<!-- //modal -->
+<script src="js/pace.min.js"></script>
 
 <!-- google sign in -->
 
