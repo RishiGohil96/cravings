@@ -17,4 +17,5 @@
     {
       echo 'Message: ' .$e->getMessage();
     }
+    date_default_timezone_set("Asia/Kolkata");
 ?>

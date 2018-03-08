@@ -1,10 +1,8 @@
 <?php
 session_start();
 include ('config/db_config.php');
-date_default_timezone_set("Asia/Kolkata");
 
-$cravings_id= 1;
-
+$cravings_id = $_POST['cravings_id'];
 $cake_id = $_POST['cake_id'];
 $type = $_POST['type'];
 $weight = $_POST['weight'];

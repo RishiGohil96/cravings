@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(!isset($_GET['q']))
 {
 header("Location: gallery.php");
@@ -93,7 +94,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user" aria-hidden="true"><b class="caret"></b></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <?php
-										session_start();
 										if (!isset($_SESSION['cravings_id']))
 										{
 										echo "<script>console.log('not set');</script>";
@@ -140,6 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-8 col-sm-8 cake-info-about ">
                    <?php
+
                             if($description != "")
                             {
                     ?>
@@ -166,8 +167,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <input type="text" name="message" id="message">
                         </div>
                         <div class="col-md-6 center order">
+                            <?php
+                                if(isset($_SESSION['cravings_id']))
+                                {
+                                    $cravings_id = $_SESSION['cravings_id'];
+                                    ?>
+                                    <a href="#" class="hvr-bounce-to-right read" id="order"><span class="fa fa-birthday-cake" aria-hidden="true"></span>Order Now</a>
+                                    <?php
+                                }
+                                else
+                                {
+                                    ?>
+                                    <a href="#" class="hvr-bounce-to-right read"><span class="fa fa-birthday-cake" aria-hidden="true"></span>Sign In to Order</a>
+                                    <?php
+                                }
+                            ?>
 
-                            <a href="#" class="hvr-bounce-to-right read" id="order"><span class="fa fa-birthday-cake" aria-hidden="true"></span>Order Now</a>
+
                         </div>
                     </form>
                 </div>
@@ -278,14 +294,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 var img_url = profile.getImageUrl();
                 var email = profile.getEmail(); // This is null if the 'email' scope is not present.
                 console.log(google_id);
-                $.redirect("php/login.php", {
-                    google_id: google_id,
-                    name: name,
-                    img_url: img_url,
-                    email: email,
-                    redirect_location: 'item.php?q=<?php echo $cake_id ?>',
-                    q: <?php echo $cake_id ?>
-                });
+                <?php
+                if(!isset($_SESSION['cravings_id']))
+                {
+                    ?>
+                    $.redirect("php/login.php", {
+                        google_id: google_id,
+                        name: name,
+                        img_url: img_url,
+                        email: email,
+                        redirect_location: 'item.php?q=<?php echo $cake_id ?>'
+                    });
+                    <?php
+                }
+                ?>
+
+
             }
         </script>
 
@@ -433,11 +457,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         weight : weight,
                                         type : type,
                                         address : address,
-                                        phone : inputValue
+                                        phone : inputValue,
+                                        cravings_id : <?php echo $cravings_id ?>
                                     }
                                 })
                                 .done(function(msg) {
-                                    swal("Nice!", "You wrote: " + msg, "success");
+                                    swal({
+                                        title: "Great!",
+                                        text : "Your order has been placed",
+                                        type: "success"
+                                    },
+                                        function(){
+                                        window.location = 'orders.php';
+                                    });
                                 });
                         });
                     });

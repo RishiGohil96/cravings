@@ -1,24 +1,17 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bakery In a Hotel Category Bootstrap Responsive Website Template | About :: w3layouts </title>
+<title>Cravings | Orders</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="google-signin-client_id" content="901571492977-108qc682d2sfg686o1i37po8gsogssii.apps.googleusercontent.com"> <!-- google sign in -->
 <meta name="keywords" content=" Bakery In Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap css -->
 <link href="css/about.css" rel="stylesheet" type="text/css" media="all" /><!-- about css -->
-<link href="css/services.css" rel="stylesheet" type="text/css" media="all" /><!-- services css -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="css/pace.css" type="text/css" media="all"> <!-- pace css -->
 
@@ -58,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user" aria-hidden="true"><b class="caret"></b></a>
 									<ul class="dropdown-menu dropdown-menu-right">
 										<?php
-										session_start();
+                                        session_start();
 										if (!isset($_SESSION['cravings_id']))
 										{
 										echo "<script>console.log('not set');</script>";
@@ -98,89 +91,99 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="about_section">
 	<div class="container white-bg">
 	<?php
-        include('php/config/db_config.php');
-        $query = "SELECT
-                    cravings_test_orders_details.order_no,
-                    cravings_test_orders_details.order_status,
-                    cravings_test_orders_details.cake_mrp,
-                    cravings_test_orders_details.delivery,
-                    cravings_test_orders_details.payment_status,
-                    cravings_test_orders_details.placed_on,
-                    cravings_test_cake_details.title,
-                    cravings_test_cake_details.location,
-                    cravings_test_orders_details.phone
-                FROM
-                    cravings_test_orders_details
-                INNER JOIN cravings_test_orders ON cravings_test_orders_details.order_no = cravings_test_orders.order_no
-                INNER JOIN cravings_test_cake_details ON cravings_test_orders_details.cake_id = cravings_test_cake_details.cake_id
-                WHERE
-                    cravings_test_orders.cravings_id=".$_SESSION['cravings_id'];
-        if($result = $conn->query($query))
+        if(isset($_SESSION['cravings_id']))
         {
-            if(mysqli_num_rows($result) == 0)
+            include('php/config/db_config.php');
+            $query = "SELECT
+                        cravings_test_orders_details.order_no,
+                        cravings_test_orders_details.order_status,
+                        cravings_test_orders_details.cake_mrp,
+                        cravings_test_orders_details.delivery,
+                        cravings_test_orders_details.payment_status,
+                        cravings_test_orders_details.placed_on,
+                        cravings_test_cake_details.title,
+                        cravings_test_cake_details.location,
+                        cravings_test_orders_details.phone
+                    FROM
+                        cravings_test_orders_details
+                    INNER JOIN cravings_test_orders ON cravings_test_orders_details.order_no = cravings_test_orders.order_no
+                    INNER JOIN cravings_test_cake_details ON cravings_test_orders_details.cake_id = cravings_test_cake_details.cake_id
+                    WHERE
+                        cravings_test_orders.cravings_id=".$_SESSION['cravings_id'];
+            if($result = $conn->query($query))
             {
-                echo "<h2>No Orders Placed!</h2><br><p>Order a cake today. What are you waiting for?</p>";
-            }
-            else
-            {
-                ?>
-                <div class="table-responsive">
-                    <table class="table table-hover" >
-                    <thead>
-                        <tr>
-                            <th>Order No.</th>
-                            <th>Item Title</th>
-                            <th>Ordered On</th>
-                            <th>Order Status</th>
-                            <th>Cake M.R.P.</th>
-                            <th>Delivery Charges</th>
-                            <th>Total</th>
-                            <th>Payment Status</th>
-                            <th>Payment</th>
-                        </tr>
-                    </thead>
-                    <?php
-                    while($row = mysqli_fetch_assoc($result))
-                    {
-                       ?>
-                       <tbody>
-                           <tr>
-                               <td><?php echo $row['order_no'] ?></td>
-                               <td><?php echo $row['title'] ?></td>
-                               <td><?php echo $row['placed_on'] ?></td>
-                               <td><?php echo $row['order_status'] ?></td>
-                               <?php
-                                    if($row['order_status'] == 'confirmed')
-                                    {
-                                        $order_no = $row['order_no'];
-                                        $total = $row['cake_mrp']+$row['delivery'];
-                                        $product = $row['title'];
-                                        $phone = $row['phone'];
-                                        echo "<td>".$row['cake_mrp']."</td>";
-                                        echo "<td>".$row['delivery']."</td>";
-                                        echo "<td>".$total."</td>";
-                                        echo "<td>".$row['payment_status']."</td>";
-                                        ?>
-                                       <td><button class='btn btn-success' onclick="payment(<?php echo $order_no ?>, <?php echo $total ?>, '<?php echo $product ?>', <?php echo $phone ?>)">Pay Now</button></td>
-                                        <?php
-                                    }
-                                    else
-                                    {
-                                        echo "<td>-</td>";
-                                        echo "<td>-</td>";
-                                        echo "<td>-</td>";
-                                        echo "<td>-</td>";
-                                        echo "<td>-</td>";
-                                    }
-                                ?>
-                           </tr>
-                       </tbody>
-                        <?php
-                    }
+                if(mysqli_num_rows($result) == 0)
+                {
+                    echo "<h2>No Orders Placed!</h2><br><p>Order a cake today. What are you waiting for?</p>";
+                }
+                else
+                {
                     ?>
-                    </table>
-                </div>
-                <?php
+                    <div class="table-responsive">
+                        <table class="table table-hover" >
+                        <thead>
+                            <tr>
+                                <th>Order No.</th>
+                                <th>Item Title</th>
+                                <th>Ordered On</th>
+                                <th>Order Status</th>
+                                <th>Cake M.R.P.</th>
+                                <th>Delivery Charges</th>
+                                <th>Total</th>
+                                <th>Payment Status</th>
+                                <th>Payment</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        while($row = mysqli_fetch_assoc($result))
+                        {
+                           ?>
+                           <tbody>
+                               <tr>
+                                   <td><?php echo $row['order_no'] ?></td>
+                                   <td><?php echo $row['title'] ?></td>
+                                   <td><?php echo $row['placed_on'] ?></td>
+                                   <td><?php echo $row['order_status'] ?></td>
+                                   <?php
+                                        if($row['order_status'] == 'confirmed')
+                                        {
+                                            $order_no = $row['order_no'];
+                                            $total = $row['cake_mrp']+$row['delivery'];
+                                            $product = $row['title'];
+                                            $phone = $row['phone'];
+                                            echo "<td>".$row['cake_mrp']."</td>";
+                                            echo "<td>".$row['delivery']."</td>";
+                                            echo "<td>".$total."</td>";
+                                            echo "<td>".$row['payment_status']."</td>";
+                                            if($row['payment_status'] != 'done')
+                                            {
+                                               ?>
+                                                   <td><button class='btn btn-success' onclick="payment(<?php echo $order_no ?>, <?php echo $total ?>, '<?php echo $product ?>', <?php echo $phone ?>)">Pay Now</button></td>
+                                                <?php
+                                            }
+                                            else
+                                            {
+                                                echo "<td>-</td>";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            echo "<td>-</td>";
+                                            echo "<td>-</td>";
+                                            echo "<td>-</td>";
+                                            echo "<td>-</td>";
+                                            echo "<td>-</td>";
+                                        }
+                                    ?>
+                               </tr>
+                           </tbody>
+                            <?php
+                        }
+                        ?>
+                        </table>
+                    </div>
+                    <?php
+                }
             }
         }
     ?>
@@ -330,7 +333,6 @@ function onLoad() {
 
 <!-- start-smooth-scrolling -->
 <script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){
@@ -340,15 +342,15 @@ function onLoad() {
 	});
 </script>
 
-	<!-- here starts scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function() {
+<!-- here starts scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function() {
 
-			$().UItoTop({ easingType: 'easeOutQuart' });
+        $().UItoTop({ easingType: 'easeOutQuart' });
 
-			});
-	</script>
-	<!-- //here ends scrolling icon -->
+        });
+</script>
+<!-- //here ends scrolling icon -->
 
 <!-- move to top-js-files -->
 	<script type="text/javascript" src="js/move-top.js"></script>
@@ -363,7 +365,7 @@ function onLoad() {
         console.log(total);
         console.log(product);
         console.log(phone);
-        $.redirect('payment/submit_form.php',{amount : total, phone : phone, productinfo : product, });
+        $.redirect('payment/submit_form.php',{order_no : order_no, amount : total, phone : phone, productinfo : product, });
     }
 </script>
 <!-- //payment function -->
