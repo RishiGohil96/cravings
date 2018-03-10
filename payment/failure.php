@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cravings | Payment | Success</title>
+    <title>Cravings | Payment | Failure</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="../css/sweetalert.css" rel="stylesheet" type="text/css" media="all">

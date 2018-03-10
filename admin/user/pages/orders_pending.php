@@ -3,6 +3,10 @@
 <?php
     session_start();
     include ('../../../php/config/db_config.php');
+    if(!isset($_SESSION['admin']))
+    {
+        header('Location: login/index.html');
+    }
 ?>
 
     <head>
@@ -54,7 +58,7 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="index.php">
                             <!-- Logo icon --><b>
                             <img src="../../../images/logo.png" alt="homepage" class="dark-logo" width="90" />
                         </b>
@@ -102,7 +106,7 @@
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav">
-                            <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
+                            <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
                             <li>
                                 <a href="#collapse_list" class="collapse-toggle" data-toggle="collapse">
                                    <i class="mdi mdi-file-document"></i>
@@ -274,6 +278,16 @@
             {
                 console.log(order_no);
                 $.redirect("order_details.php",{order_no : order_no, order_status : 'pending'});
+            }
+            function logout() {
+                 $.ajax({
+                    method: "POST",
+                    url: "login/logout.php"
+                })
+                .done(function() {
+                    console.log('logged out');
+                    window.location = 'login/';
+                });
             }
         </script>
     </body>

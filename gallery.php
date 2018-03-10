@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bakery In a Hotel Category Bootstrap Responsive Website Template | Gallery :: w3layouts </title>
+<title>Cravings | Gallery</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="google-signin-client_id" content="901571492977-108qc682d2sfg686o1i37po8gsogssii.apps.googleusercontent.com"> <!-- google sign in -->
@@ -106,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	</button>
-		<h1>Menu </h1>
+
 
 		</div>
 		<!--/.navbar-header-->
@@ -156,8 +156,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Portfolio section -->
 <section class="portfolio-agileinfo gallery background" id="portfolio" >
 			<h3 class="heading">Gallery</h3>
-				<div class="container" >
-	<div class="gallery-grids">
+				<div class="container white-bg" >
+	<div class="gallery-grids ">
 		<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 
 			<div id="myTabContent" class="tab-content">
