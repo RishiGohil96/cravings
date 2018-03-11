@@ -2,7 +2,6 @@
 <html lang="en">
 <?php
     session_start();
-    include ('../../../php/config/db_config.php');
     if(!isset($_SESSION['admin']))
     {
         header('Location: login/index.html');
@@ -139,6 +138,29 @@
                                 </div>
                             </li>
                             <li>
+                                <a href="#collapse_list_cakes" class="collapse-toggle" data-toggle="collapse">
+                                   <i class="mdi mdi-cake"></i>
+                                    <span class="hide-menu"> Cakes </span>
+                                </a>
+                                <div id="collapse_list_cakes" class="collapse">
+                                    <ul class="list-group">
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="cakes_add.php" aria-expanded="false">
+                                            <i class="fa fa-plus"></i>
+                                            <span class="hide-menu"> Add Cake</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="cakes_update.php" aria-expanded="true">
+                                            <i class="fa fa-check"></i>
+                                            <span class="hide-menu"> Update Cake</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
                                 <a class="waves-effect waves-dark" href="add_customer.php" aria-expanded="true">
                                     <i class="fa fa-address-book-o"></i>
                                     <span class="hide-menu"> Add Customer</span>
@@ -203,9 +225,28 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-12">Birthday</label>
-                                            <div class="col-md-12">
-                                                <input type="text" placeholder="01/01/2001" id="datepicker" class="form-control form-control-line" required>
+                                            <div class="row">
+                                               &emsp;
+                                                <div class="col-md-4">
+                                                   Day:
+                                                    <select name="birthday_day" id="birthday_day" class="form-control ">
+                                                    <?php
+                                                        for ($day = 1; $day <= 31 ; $day++)
+                                                        echo "<option value='$day'>$day</option>";
+                                                    ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   Month:
+                                                    <select name="birthday_month" id="birthday_month" class="form-control">
+                                                    <?php
+                                                        for ($month = 1; $month <= 12 ; $month++)
+                                                        echo "<option value='$month'>$month</option>";
+                                                    ?>
+                                                    </select>
+                                                </div>
                                             </div>
+
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-12">Phone No</label>
@@ -222,7 +263,7 @@
                                         </div>
 
 
-                                        <div class="form-group">
+                                        <div class="form-group" style="text-align:center">
                                             <div class="col-sm-12">
                                                 <button class="btn btn-success">Add Customer</button>
                                             </div>
@@ -300,9 +341,11 @@
                 event.preventDefault();
                 var name = $('#name').val();
                 var email = $('#email').val();
-                var birthday = $('#datepicker').val();
+                var birthday_day = $('select[name=birthday_day]').val();
+                var birthday_month = $('select[name=birthday_month]').val();
                 var phone = $('#phone').val();
                 var address = $('#address').val();
+                var birthday = '2000-'+birthday_month+'-'+birthday_day;
 
                 $.ajax({
                         method: "POST",
@@ -320,7 +363,6 @@
                         swal('Done!', 'Customer Successfully Added', 'success');
                         $('#name').val('');
                         $('#email').val('');
-                        $('#datepicker').val('');
                         $('#phone').val('');
                         $('#address').val('');
                     });

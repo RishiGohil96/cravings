@@ -2,11 +2,11 @@
 <html lang="en">
 <?php
     session_start();
+    include ('../../../php/config/db_config.php');
     if(!isset($_SESSION['admin']))
     {
         header('Location: login/index.html');
     }
-    include ('config/db_config.php');
 ?>
 
     <head>
@@ -20,11 +20,12 @@
         <link rel="icon" type="image/png" href="../../../images/favicon/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="../../../images/favicon/favicon-16x16.png" sizes="16x16" />
 
-        <title>Cravings | Admin | Orders</title>
+        <title>Cravings | Admin | Add Cake</title>
         <!-- Bootstrap Core CSS -->
         <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
         <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/custom.css">
         <!-- You can change the theme colors from here -->
         <link href="css/colors/default-dark.css" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -112,7 +113,7 @@
                                    <i class="mdi mdi-file-document"></i>
                                     <span class="hide-menu"> Orders </span>
                                 </a>
-                                <div id="collapse_list" class="collapse show">
+                                <div id="collapse_list" class="collapse">
                                     <ul class="list-group">
                                         <li>
                                             <a class="waves-effect waves-dark" href="orders_pending.php" aria-expanded="false">
@@ -132,6 +133,7 @@
                                             <span class="hide-menu"> Cancelled Orders</span>
                                             </a>
                                         </li>
+
                                     </ul>
                                 </div>
                             </li>
@@ -140,7 +142,7 @@
                                    <i class="mdi mdi-cake"></i>
                                     <span class="hide-menu"> Cakes </span>
                                 </a>
-                                <div id="collapse_list_cakes" class="collapse">
+                                <div id="collapse_list_cakes" class="collapse show">
                                     <ul class="list-group">
                                         <li>
                                             <a class="waves-effect waves-dark" href="cakes_add.php" aria-expanded="false">
@@ -192,7 +194,7 @@
                     <!-- ============================================================== -->
                     <div class="row page-titles">
                         <div class="col-md-5 align-self-center">
-                            <h3 class="text-themecolor">Orders / Cancelled Orders</h3>
+                            <h3 class="text-themecolor">Cakes / Add Cake</h3>
                         </div>
                     </div>
                     <!-- ============================================================== -->
@@ -201,71 +203,55 @@
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
+                    <!-- Pending Orders -->
+                    <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <?php
-                                    $query = "select cravings_test_orders_details.order_no, cravings_test_user_details.first_name, cravings_test_cake_details.title, cravings_test_orders_details.weight, cravings_test_orders_details.placed_on
-                                    from  cravings_test_orders_details
-                                    INNER JOIN cravings_test_orders
-                                    on cravings_test_orders_details.order_no = cravings_test_orders.order_no
-                                    INNER JOIN cravings_test_user_details
-                                    ON cravings_test_orders.cravings_id = cravings_test_user_details.cravings_id
-                                    INNER JOIN cravings_test_cake_details
-                                    ON cravings_test_orders_details.cake_id = cravings_test_cake_details.cake_id
-                                    where cravings_test_orders_details.order_status='cancelled'
-                                    ORDER BY cravings_test_orders_details.placed_on DESC";
-
-                                    if($result = $conn->query($query))
-                                    {
-                                        if(mysqli_num_rows($result) == 0)
-                                        {
-                                            echo "<h3>No orders! </h3>";
-                                        }
-                                        else
-                                        {
-                                            ?>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Order No.</th>
-                                                            <th>Name</th>
-                                                            <th>Cake</th>
-                                                            <th>Weight</th>
-                                                            <th>Placed</th>
-                                                            <th>Details</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-
-                                            <?php
-                                            while($row = mysqli_fetch_assoc($result))
-                                            {
-                                                $order_no = $row['order_no'];
-                                                echo "<tr>";
-                                                echo "<td>".$order_no."</td>";
-                                                echo "<td>".$row['first_name']."</td>";
-                                                echo "<td>".$row['title']."</td>";
-                                                echo "<td>".$row['weight']."</td>";
-                                                echo "<td>".$row['placed_on']."</td>";
-                                                echo "<td><button class='btn btn-primary' onclick=order_details($order_no) >Details</button>";
-                                                echo "</tr>";
-                                            }
-                                            ?>
-                                                    </tbody>
-                                                </table>
+                                    <form action="submit_upload_file.php" method="post" id="photo_form" enctype="multipart/form-data" ng-app="MyApp1" ng-controller="MyController" class="form-horizontal form-material">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Cake type:</label>
+                                            <div class="select col-md-12">
+                                                <select name="cake_type" id="cake_type" ng-model="feed.drop_pick" ng-options="template.value as template.name for template in feed.picks" class="form-control form-control-line">
+                                                </select>
                                             </div>
-                                            <?php
-                                        }
-                                    }
-                                ?>
+                                        </div>
+                                        <div class="form-group" id="cake_subtype_div">
+                                            <label class="col-md-12">Cake Sub type:</label>
+                                            <div class="col-md-12 select">
+                                                <select name="cake_subtype" id="cake_subtype" ng-model="feed.drop_select" ng-options="template.sub_type as template.sub_type for template in feed.drops | filter: {'type' : feed.drop_pick}" class="form-control form-control-line">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Cake title:</label>
+                                            <div class="col-md-12">
+                                                <input type="text" name="cake_title" id="cake_title" class="form-control form-control-line" placeholder="Birthday Cake" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Select image to upload:</label>
+                                            <div class="col-md-12">
+                                                <input type="file" name="fileToUpload" id="fileToUpload" class="form-control form-control-line" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12" style="text-align:center">
+                                                <Button type="submit" value="Upload Image" name="submit" class="btn btn-success">Upload</Button>
+                                            </div>
+                                        </div>
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- End Pending Orders -->
+                    <!-- ============================================================== -->
+
+
+
                     <!-- ============================================================== -->
                     <!-- End PAge Content -->
                     <!-- ============================================================== -->
@@ -307,24 +293,173 @@
         <script src="js/custom.min.js"></script>
         <!-- Redirect JS -->
         <script src="../../../js/jquery.redirect.js"></script>
+        <!-- Angular JS -->
+        <script src="js/angular.min.js"></script>
 
         <script type="text/javascript">
             function logout() {
-                 $.ajax({
-                    method: "POST",
-                    url: "login/logout.php"
-                })
-                .done(function() {
-                    console.log('logged out');
-                    window.location = 'login/';
-                });
+                $.ajax({
+                        method: "POST",
+                        url: "login/logout.php"
+                    })
+                    .done(function() {
+                        console.log('logged out');
+                        window.location = 'login/';
+                    });
             }
+            $("#cake_type").change(function() {
+                var new_type = $('select[name=cake_type]').val();
+                if (new_type != 'string:Anniversary' && new_type != 'string:Birthday') {
+                    $('#cake_subtype_div').hide();
+                } else {
+                    $('#cake_subtype_div').show();
+                }
+            });
+        </script>
 
+        <script type="text/javascript">
+            var MyApp = angular.module('MyApp1', [])
+            MyApp.controller('MyController', function($scope) {
+                $scope.feed = {};
 
-            function order_details(order_no)
-            {
-                console.log(order_no);
-                $.redirect("order_details.php",{order_no : order_no, order_status : 'cancelled'});
+                //pick up locations
+                $scope.feed.picks = [{
+                        'name': 'Anniversary',
+                        'value': 'Anniversary'
+                    },
+                    {
+                        'name': 'Baptism',
+                        'value': 'Baptism'
+                    },
+                    {
+                        'name': 'Birthday',
+                        'value': 'Birthday'
+                    },
+                    {
+                        'name': 'Communion',
+                        'value': 'Communion'
+                    },
+                    {
+                        'name': 'Wedding',
+                        'value': 'Wedding'
+                    },
+                    {
+                        'name': 'Adult',
+                        'value': 'Adult'
+                    },
+                    {
+                        'name': 'Other',
+                        'value': 'Other'
+                    }
+                ];
+
+                //drop locations
+                $scope.feed.drops = [{
+                        "type": "Anniversary",
+                        "sub_type": "25th Anniversary",
+                        "location": "images/cakes/anniversary/25-anniversary/"
+                    },
+                    {
+                        "type": "Anniversary",
+                        "sub_type": "50th Anniversary",
+                        "location": "images/cakes/anniversary/50-anniversary/"
+                    },
+                    {
+                        "type": "Anniversary",
+                        "sub_type": "other",
+                        "location": "images/cakes/anniversary/other/"
+                    },
+                    {
+                        "type": "Baptism",
+                        "location": "images/cakes/baptism/"
+                    },
+                    {
+                        "type": "Birthday",
+                        "sub_type": "1st Birthday",
+                        "location": "images/cakes/birthday/1-birthday/"
+                    },
+                    {
+                        "type": "Birthday",
+                        "sub_type": "21st Birthday",
+                        "location": "images/cakes/birthday/21-birthday/"
+                    },
+                    {
+                        "type": "Birthday",
+                        "sub_type": "50th Birthday",
+                        "location": "images/cakes/birthday/50-birthday/"
+                    },
+                    {
+                        "type": "Birthday",
+                        "sub_type": "football",
+                        "location": "images/cakes/birthday/football/"
+                    },
+                    {
+                        "type": "Birthday",
+                        "sub_type": "Kids",
+                        "location": "images/cakes/birthday/kids/"
+                    },
+                    {
+                        "type": "Birthday",
+                        "sub_type": "other",
+                        "location": "images/cakes/birthday/other/"
+                    },
+                    {
+                        "type": "Communion",
+                        "location": "images/cakes/communion/"
+                    },
+                    {
+                        "type": "Wedding",
+                        "location": "images/cakes/wedding/"
+                    },
+                    {
+                        "type": "Adult",
+                        "location": "images/cakes/adult/"
+                    },
+                    {
+                        "type": "other",
+                        "location": "images/cakes/other/"
+                    }
+                ];
+
+                //Setting first option as selected in configuration select
+                $scope.feed.drop_pick = $scope.feed.picks[0].value;
+                $scope.feed.drop_select = $scope.feed.drops[0].sub_type;
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("#photo_form").submit(function(e) {
+
+                var cake_type = $('#cake_type').find(":selected").text();
+                var cake_subtype = $('#cake_subtype').find(":selected").text();
+                var cake_title = $('#cake_title').val();
+
+                console.log(cake_type);
+                console.log(cake_subtype);
+                console.log(cake_title);
+
+                if ((cake_type == 'Anniversary' || cake_type == 'Birthday') && (cake_subtype == '')) {
+                    alert("Please select a cake sub-type");
+                    $('#cake_subtype').focus();
+                    e.preventDefault();
+                }
+                if (!Checkfiles()) {
+                    e.preventDefault();
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            function Checkfiles() {
+                var file = document.getElementById('fileToUpload');
+                var fileName = file.value;
+                var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+                if (ext == "PNG" || ext == "png" || ext == "JPG" || ext == "jpg" || ext == "JPEG" || ext == "jpeg") {
+                    return true;
+                } else {
+                    alert("Upload jpg or png Images only");
+                    return false;
+                }
             }
         </script>
     </body>

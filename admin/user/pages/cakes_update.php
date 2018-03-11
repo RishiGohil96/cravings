@@ -20,11 +20,12 @@
         <link rel="icon" type="image/png" href="../../../images/favicon/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="../../../images/favicon/favicon-16x16.png" sizes="16x16" />
 
-        <title>Cravings | Admin | Orders</title>
+        <title>Cravings | Admin</title>
         <!-- Bootstrap Core CSS -->
         <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
         <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/sweetalert.css">
         <!-- You can change the theme colors from here -->
         <link href="css/colors/default-dark.css" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -112,7 +113,7 @@
                                    <i class="mdi mdi-file-document"></i>
                                     <span class="hide-menu"> Orders </span>
                                 </a>
-                                <div id="collapse_list" class="collapse show">
+                                <div id="collapse_list" class="collapse">
                                     <ul class="list-group">
                                         <li>
                                             <a class="waves-effect waves-dark" href="orders_pending.php" aria-expanded="false">
@@ -132,6 +133,7 @@
                                             <span class="hide-menu"> Cancelled Orders</span>
                                             </a>
                                         </li>
+
                                     </ul>
                                 </div>
                             </li>
@@ -140,7 +142,7 @@
                                    <i class="mdi mdi-cake"></i>
                                     <span class="hide-menu"> Cakes </span>
                                 </a>
-                                <div id="collapse_list_cakes" class="collapse">
+                                <div id="collapse_list_cakes" class="collapse show">
                                     <ul class="list-group">
                                         <li>
                                             <a class="waves-effect waves-dark" href="cakes_add.php" aria-expanded="false">
@@ -192,7 +194,7 @@
                     <!-- ============================================================== -->
                     <div class="row page-titles">
                         <div class="col-md-5 align-self-center">
-                            <h3 class="text-themecolor">Orders / Cancelled Orders</h3>
+                            <h3 class="text-themecolor">Cakes / Update Cakes</h3>
                         </div>
                     </div>
                     <!-- ============================================================== -->
@@ -201,71 +203,100 @@
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
+                    <!--  cakes -->
+                    <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <?php
-                                    $query = "select cravings_test_orders_details.order_no, cravings_test_user_details.first_name, cravings_test_cake_details.title, cravings_test_orders_details.weight, cravings_test_orders_details.placed_on
-                                    from  cravings_test_orders_details
-                                    INNER JOIN cravings_test_orders
-                                    on cravings_test_orders_details.order_no = cravings_test_orders.order_no
-                                    INNER JOIN cravings_test_user_details
-                                    ON cravings_test_orders.cravings_id = cravings_test_user_details.cravings_id
-                                    INNER JOIN cravings_test_cake_details
-                                    ON cravings_test_orders_details.cake_id = cravings_test_cake_details.cake_id
-                                    where cravings_test_orders_details.order_status='cancelled'
-                                    ORDER BY cravings_test_orders_details.placed_on DESC";
-
-                                    if($result = $conn->query($query))
-                                    {
-                                        if(mysqli_num_rows($result) == 0)
-                                        {
-                                            echo "<h3>No orders! </h3>";
-                                        }
-                                        else
-                                        {
-                                            ?>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Order No.</th>
-                                                            <th>Name</th>
-                                                            <th>Cake</th>
-                                                            <th>Weight</th>
-                                                            <th>Placed</th>
-                                                            <th>Details</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-
-                                            <?php
-                                            while($row = mysqli_fetch_assoc($result))
-                                            {
-                                                $order_no = $row['order_no'];
-                                                echo "<tr>";
-                                                echo "<td>".$order_no."</td>";
-                                                echo "<td>".$row['first_name']."</td>";
-                                                echo "<td>".$row['title']."</td>";
-                                                echo "<td>".$row['weight']."</td>";
-                                                echo "<td>".$row['placed_on']."</td>";
-                                                echo "<td><button class='btn btn-primary' onclick=order_details($order_no) >Details</button>";
-                                                echo "</tr>";
-                                            }
-                                            ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <?php
-                                        }
+                                    $query = "select count(cake_id) as count from cravings_test_cake_details where status = 'active'";
+                                    $result = $conn->query($query);
+                                    $row = mysqli_fetch_assoc($result);
+                                    $cake_count = $row['count'];
+                                    $cake_count = ceil($cake_count/30);
+                                    if(isset($_GET['page'])){
+                                      $page = (int) $_GET['page'];
                                     }
+                                    else {
+                                      $page= 1;
+                                    }
+                                    if($page == 1){
+                                      $limit = 0;
+                                    }
+                                    else {
+                                      $limit = $page*30-30;
+                                    }
+
+                                    $query = "select * from cravings_test_cake_details where status = 'active' LIMIT $limit, 30";
+                                    $result = $conn->query($query);
+                                    ?>
+                                        <div class="table-responsive">
+
+
+                                            <table class="table table-hover">
+                                                <tr>
+                                                    <th>Cake ID</th>
+                                                    <th>Cake Image</th>
+                                                    <th>title</th>
+                                                    <th>Update</th>
+                                                </tr>
+                                                <?php
+                                    if(mysqli_num_rows($result) > 0)
+                                    {
+                                      while($row = mysqli_fetch_assoc($result))
+                                      {
+                                        ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $row['cake_id'] ?> </td>
+
+                                                        <td class="table-img"> <a href="../../../<?php echo $row['location'] ?>" target="_blank"><img src="../../../<?php echo $row['location'] ?>" alt="cake"  width="200px" class=""></a> </td>
+
+                                                        <td> <input type="text" id="<?php echo $row['cake_id'] ?>-title" name="<?php echo $row['cake_id'] ?>-title" value="<?php echo $row['title'] ?>">
+                                                            <br>Description: <br>
+                                                            <textarea name="<?php echo $row['cake_id'] ?>-description" id="<?php echo $row['cake_id'] ?>-description" rows="3" cols="20"><?php echo $row['description'] ?></textarea></td>
+
+                                                        <td> <button type="button" class="btn btn-default" name="<?php echo $row['cake_id'] ?>-button" onclick="update_cake(<?php echo $row['cake_id'] ?>)">UPDATE</button>
+
+                                                            <br> <br> <br>
+
+                                                            <button type="button" class="btn btn-danger" name="<?php echo $row['cake_id'] ?>-button" onclick="delete_cake(<?php echo $row['cake_id'] ?>)">DELETE</button> </td>
+
+                                                    </tr>
+                                                    <?php
+                                      }
+                                    }
+                                    ?>
+                                            </table>
+                                        </div>
+                                        <?php
+                                    echo "<div class='pageBtn' style='text-align:center'>";       //Navigation buttons
+                                    echo "<p>Page ".$page." of ".$cake_count;
+                                    echo "</p><br>";
+                                    if($page>1)
+                                         echo "<a href=cakes_update.php?page=".($page-1)."><< Prev</a>"." ";
+                                    for($pageIndex=1;$pageIndex<=$cake_count;$pageIndex++){
+                                        if ($pageIndex==$page)
+                                             echo "<a href='' class=active>".$pageIndex."</a> ";
+                                        else
+                                             echo "<a href='cakes_update.php?page=".$pageIndex."'>".$pageIndex."</a> ";
+                                        }
+                                    if($page<$cake_count)
+                                        echo "<a href=cakes_update.php?page=".($page+1).">Next >></a>";
+
+                                    echo"</div>";
                                 ?>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- End cakes -->
+                    <!-- ============================================================== -->
+
+
+
+
                     <!-- ============================================================== -->
                     <!-- End PAge Content -->
                     <!-- ============================================================== -->
@@ -307,24 +338,89 @@
         <script src="js/custom.min.js"></script>
         <!-- Redirect JS -->
         <script src="../../../js/jquery.redirect.js"></script>
+        <!-- Sweet Alert -->
+        <script src="js/sweetalert.min.js"></script>
 
         <script type="text/javascript">
             function logout() {
-                 $.ajax({
-                    method: "POST",
-                    url: "login/logout.php"
-                })
-                .done(function() {
-                    console.log('logged out');
-                    window.location = 'login/';
-                });
+                $.ajax({
+                        method: "POST",
+                        url: "login/logout.php"
+                    })
+                    .done(function() {
+                        console.log('logged out');
+                        window.location = 'login/';
+                    });
             }
+        </script>
+        <script type="text/javascript">
+            function update_cake(cake_id) {
 
+                var title = $('#' + cake_id + '-title').val();
+                var description = $('#' + cake_id + '-description').val().trim();
+                var update = 1;
+                if (title == '') {
+                    alert("Please enter the details");
+                    update = 0;
+                }
 
-            function order_details(order_no)
-            {
-                console.log(order_no);
-                $.redirect("order_details.php",{order_no : order_no, order_status : 'cancelled'});
+                if (update) {
+                    var url = "submit_update_info.php";
+
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: {
+                            cake_id: cake_id,
+                            title: title,
+                            description: description
+                        },
+                        success: function(data) {
+                            data = JSON.parse(data);
+                            console.log(data);
+                            swal(data.message, '', data.state);
+                            setTimeout(function(){
+                                        location.reload();
+                            }, 3000);
+                        }
+                    });
+                }
+
+            }
+        </script>
+
+        <script type="text/javascript">
+            function delete_cake(cake_id) {
+                swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to recover the file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, I am sure!',
+                        cancelButtonText: "No, cancel it!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'submit_delete_cake.php',
+                                data: {
+                                    cake_id: cake_id
+                                },
+                                success: function(data) {
+                                    data = JSON.parse(data);
+                                    console.log(data);
+                                    swal(data.message, '', data.state);
+                                    setTimeout(function(){
+                                        location.reload();
+                                    }, 3000);
+                                }
+                            });
+                        }
+                    });
+
             }
         </script>
     </body>

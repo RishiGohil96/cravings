@@ -2,11 +2,11 @@
 <html lang="en">
 <?php
     session_start();
-    include ('../../../php/config/db_config.php');
     if(!isset($_SESSION['admin']))
     {
         header('Location: login/index.html');
     }
+    include ('config/db_config.php');
 ?>
 
     <head>
@@ -134,6 +134,41 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </li>
+                            <li>
+                                <a href="#collapse_list_cakes" class="collapse-toggle" data-toggle="collapse">
+                                   <i class="mdi mdi-cake"></i>
+                                    <span class="hide-menu"> Cakes </span>
+                                </a>
+                                <div id="collapse_list_cakes" class="collapse">
+                                    <ul class="list-group">
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="cakes_add.php" aria-expanded="false">
+                                            <i class="fa fa-plus"></i>
+                                            <span class="hide-menu"> Add Cake</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="cakes_update.php" aria-expanded="true">
+                                            <i class="fa fa-check"></i>
+                                            <span class="hide-menu"> Update Cake</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="add_customer.php" aria-expanded="true">
+                                    <i class="fa fa-address-book-o"></i>
+                                    <span class="hide-menu"> Add Customer</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="#" aria-expanded="true" onclick=logout()>
+                                    <i class="fa fa-sign-out"></i>
+                                    <span class="hide-menu"> Log Out</span>
+                                </a>
                             </li>
                         </ul>
                     </nav>

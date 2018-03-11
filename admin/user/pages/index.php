@@ -2,11 +2,11 @@
 <html lang="en">
 <?php
     session_start();
-    include ('../../../php/config/db_config.php');
     if(!isset($_SESSION['admin']))
     {
         header('Location: login/index.html');
     }
+    include ('config/db_config.php');
 ?>
 
     <head>
@@ -25,6 +25,7 @@
         <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
         <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/custom.css">
         <!-- You can change the theme colors from here -->
         <link href="css/colors/default-dark.css" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -137,6 +138,29 @@
                                 </div>
                             </li>
                             <li>
+                                <a href="#collapse_list_cakes" class="collapse-toggle" data-toggle="collapse">
+                                   <i class="mdi mdi-cake"></i>
+                                    <span class="hide-menu"> Cakes </span>
+                                </a>
+                                <div id="collapse_list_cakes" class="collapse">
+                                    <ul class="list-group">
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="cakes_add.php" aria-expanded="false">
+                                            <i class="fa fa-plus"></i>
+                                            <span class="hide-menu"> Add Cake</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="cakes_update.php" aria-expanded="true">
+                                            <i class="fa fa-check"></i>
+                                            <span class="hide-menu"> Update Cake</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
                                 <a class="waves-effect waves-dark" href="add_customer.php" aria-expanded="true">
                                     <i class="fa fa-address-book-o"></i>
                                     <span class="hide-menu"> Add Customer</span>
@@ -179,6 +203,8 @@
                     <!-- ============================================================== -->
                     <!-- Start Page Content -->
                     <!-- ============================================================== -->
+                    <!-- Pending Orders -->
+                    <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -198,6 +224,71 @@
                             </div>
                         </div>
                     </div>
+                    <!-- End Pending Orders -->
+                    <!-- ============================================================== -->
+
+                    <!-- Upcoming Birthdays -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body upcoming_birthdays" >
+                                   <h3 class="text-themecolor">Upcoming Birthdays</h3>
+                                    <?php
+                                    $today = date('2000-m-d');
+                                    $next_week = date('2000-m-d', strtotime('+1 week'));
+                                    $query = "SELECT * FROM `cravings_test_customers` WHERE birthday BETWEEN '$today' AND '$next_week'  ORDER BY birthday";
+                                    if($result = $conn->query($query))
+                                    {
+                                        if(mysqli_num_rows($result) == 0)
+                                        {
+                                            ?>
+                                            <h4>No Birthdays this week!</h4>
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Phone</th>
+                                                            <th>e-mail</th>
+                                                            <th>Birthday</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                            <?php
+                                            while($row = mysqli_fetch_array($result))
+                                            {
+                                                $birthday = explode('-',$row['birthday']);
+                                                $birthday = $birthday[2].'/'.$birthday[1];
+                                                echo "<tr>";
+                                                echo "<td>".$row['name']."</td>";
+                                                echo "<td>".$row['phone']."</td>";
+                                                echo "<td>".$row['email']."</td>";
+                                                echo "<td>".$birthday."</td>";
+                                                echo "</tr>";
+                                            }
+                                            ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <?php
+                                        }
+
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Upcoming Birthdays -->
+                    <!-- ============================================================== -->
+
+
                     <!-- ============================================================== -->
                     <!-- End PAge Content -->
                     <!-- ============================================================== -->

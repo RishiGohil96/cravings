@@ -59,7 +59,6 @@
         <th>Cake ID</th>
         <th>Cake Image</th>
         <th>title</th>
-        <th>description</th>
         <th>Update</th>
       </tr>
     <?php
@@ -71,9 +70,12 @@
           <tr>
             <td> <?php echo $row['cake_id'] ?> </td>
             <td> <img src="../<?php echo $row['location'] ?>" alt="cake" height=200px> </td>
-            <td> <input type="text" id="<?php echo $row['cake_id'] ?>-title" name="<?php echo $row['cake_id'] ?>-title" value="<?php echo $row['title'] ?>"> </td>
-            <td> <textarea name="<?php echo $row['cake_id'] ?>-description" id="<?php echo $row['cake_id'] ?>-description"  rows="3" cols="40"><?php echo $row['description'] ?></textarea> </td>
+
+            <td> <input type="text" id="<?php echo $row['cake_id'] ?>-title" name="<?php echo $row['cake_id'] ?>-title" value="<?php echo $row['title'] ?>">
+            <br> <textarea name="<?php echo $row['cake_id'] ?>-description" id="<?php echo $row['cake_id'] ?>-description"  rows="3" cols="40"><?php echo $row['description'] ?></textarea> </td>
+
             <td> <button type="button" class="btn btn-default" name="<?php echo $row['cake_id'] ?>-button" onclick="update_cake(<?php echo $row['cake_id'] ?>)">UPDATE</button> </td>
+
           </tr>
         <?php
       }
