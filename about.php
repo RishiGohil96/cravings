@@ -300,16 +300,21 @@ $.redirect("php/login.php",{google_id: google_id, name: name, img_url: img_url, 
 
 <!-- google sign out -->
 <script type="text/javascript">
-function signOut() {
-	<?php
-	unset($_SESSION['cravings_id']);
-	 ?>
-	var auth2 = gapi.auth2.getAuthInstance();
-	auth2.signOut().then(function () {
-		console.log('User signed out.');
-		location.reload();
-	});
-}
+    function signOut()
+    {
+        $.ajax({
+            type : 'POST',
+            url : 'php/logout.php'
+        })
+        .done(function(msg){
+            console.log(msg);
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+                location.reload();
+            });
+        });
+    }
 function onLoad() {
       gapi.load('auth2', function() {
         gapi.auth2.init();

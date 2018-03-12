@@ -1,5 +1,7 @@
 <?php
 session_start();
+$sess = print_r($_SESSION, true);
+echo "<script>console.log($sess);</script>";
 if(!isset($_GET['q']))
 {
 header("Location: gallery.php");
@@ -156,9 +158,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="col-md-6">
                             Weight:
                             <select name="weight" id="weight">
-				<option value="500">0.5 kg</option>
 				<option value="1000">1 kg</option>
-				<option value="1500">1.5 kg</option>
+				<option value="2000">2 kg</option>
+				<option value="3000">3 kg</option>
+				<option value="4000">4 kg</option>
+				<option value="5000">5 kg and above</option>
 			</select>
                             <br/> <br/>
                             <input type="radio" name="egg" value="egg" checked> Egg &emsp;
@@ -318,14 +322,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- google sign out -->
         <script type="text/javascript">
             function signOut() {
-                <?php
-	unset($_SESSION['cravings_id']);
-	 ?>
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function() {
-                    console.log('User signed out.');
-                    location.reload();
+                $.ajax({
+                    type : 'POST',
+                    url : 'php/logout.php'
+                })
+                .done(function(msg){
+                    console.log(msg);
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(function() {
+                        console.log('User signed out.');
+                        location.reload();
+                    });
                 });
+
             }
 
             function onLoad() {
