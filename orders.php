@@ -1,14 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116041965-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116041965-1');
+</script>
+
 <title>Cravings | Orders</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="google-signin-client_id" content="901571492977-108qc682d2sfg686o1i37po8gsogssii.apps.googleusercontent.com"> <!-- google sign in -->
-<meta name="keywords" content=" Bakery In Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<meta name="keywords" content="Cakes, Pastry, Dessert, Wedding Cakes, Birthday Cakes, Baptism Cakes, Cakes in Goa, Goa, Sweets in Goa, Cravings Goa, Cravings Cakes, Cravings Cake Shop Goa, Cravings Dessert, Cravings Parra, Chocolate Cake, Cheesecakes" />
 
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" href="images/favicon/favicon-32x32.ico" sizes="32x32" />
+<link rel="icon" type="image/png" href="images/favicon/favicon-16x16.ico" sizes="16x16" />
 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap css -->
 <link href="css/about.css" rel="stylesheet" type="text/css" media="all" /><!-- about css -->
@@ -242,10 +253,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="w3ls_footer_grid_left">
 						<div class="w3l-icon">
-							<span class="fa fa-phone" aria-hidden="true"></span>
+							<span class="fa fa-whatsapp" aria-hidden="true"></span>
 						</div>
 						<p>+(91) 88053 09016
-							<!--<span>+(029) 664  951 859</span>-->
+							<span>+(91) 95525 59016</span>
 						</p>
 						<div class="clearfix"></div>
 					</div>
@@ -265,20 +276,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 col-xs-6 w3_agile_footer_grid">
 					<h3>Opening Hours</h3>
 					<ul>
-						<li><span class="fa fa-clock-o" aria-hidden="true"></span> Monday <span>9:00 - 14:00</span></li>
-						<li><span class="fa fa-clock-o" aria-hidden="true"></span> Tuesday <span>9:00 - 14:00</span></li>
-						<li><span class="fa fa-clock-o" aria-hidden="true"></span> Wednesday <span>9:00 - 14:00</span></li>
-						<li><span class="fa fa-clock-o" aria-hidden="true"></span> Thursday <span>9:00 - 14:00</span></li>
-						<li><span class="fa fa-clock-o" aria-hidden="true"></span> Friday <span>9:00 - 14:00</span></li>
-						<li><span class="fa fa-clock-o" aria-hidden="true"></span> Saturday <span>9:00 - 14:00</span></li>
-						<li><span class="fa fa-clock-o" aria-hidden="true"></span> Sunday <span>Closed</span></li>
-					</ul>
+                        <li><span class="fa fa-clock-o" aria-hidden="true"></span> Monday - Saturday</li>
+                        <li>&emsp; 9:00 - 20:00</li>
+                        <li><span class="fa fa-clock-o" aria-hidden="true"></span> Sunday <span>Orders Only</span></li>
+                    </ul>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="agileinfo_copyright">
-				<p>© 2018 Bakery In. All Rights Reserved | Design by <a href="https://facebook.com/rocking.rishi96">Rishi Gohil</a>
+				<p>© 2018 Cravings All Rights Reserved | Design by <a href="https://facebook.com/rocking.rishi96">Rishi Gohil</a>
+				</p>
+				<p>
+				    <a href="https://www.facebook.com/Cravings-168809469935870/"><i class="fa fa-facebook-square fa-2x icon-fb" aria-hidden="true"></i></a>
+				    <a href="https://www.instagram.com/cravings_goa/"><i class="fa fa-instagram fa-2x icon-instagram" aria-hidden="true"></i></a>
 				</p>
 			</div>
 		</div>

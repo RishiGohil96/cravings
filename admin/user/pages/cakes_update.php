@@ -161,9 +161,31 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="waves-effect waves-dark" href="add_customer.php" aria-expanded="true">
-                                    <i class="fa fa-address-book-o"></i>
-                                    <span class="hide-menu"> Add Customer</span>
+                                <a href="#collapse_list_customers" class="collapse-toggle" data-toggle="collapse">
+                                   <i class="fa fa-address-book-o"></i>
+                                    <span class="hide-menu"> Customers </span>
+                                </a>
+                                <div id="collapse_list_customers" class="collapse">
+                                    <ul class="list-group">
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="customers_add.php" aria-expanded="false">
+                                            <i class="fa fa-user-plus"></i>
+                                            <span class="hide-menu"> Add Customers</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="customers_view.php" aria-expanded="true">
+                                            <i class="fa fa-users"></i>
+                                            <span class="hide-menu"> View Customers</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="stats.php" aria-expanded="true">
+                                    <i class="fa fa-line-chart"></i>
+                                    <span class="hide-menu"> Stats</span>
                                 </a>
                             </li>
                             <li>
@@ -246,6 +268,8 @@
                                     {
                                       while($row = mysqli_fetch_assoc($result))
                                       {
+                                          if($row['popular']) $popular_button = "Remove from Populars";
+                                          else $popular_button = "Add to Populars";
                                         ?>
                                                     <tr>
                                                         <td>
@@ -259,9 +283,15 @@
 
                                                         <td> <button type="button" class="btn btn-default" name="<?php echo $row['cake_id'] ?>-button" onclick="update_cake(<?php echo $row['cake_id'] ?>)">UPDATE</button>
 
-                                                            <br> <br> <br>
+                                                        <br> <br>
 
-                                                            <button type="button" class="btn btn-danger" name="<?php echo $row['cake_id'] ?>-button" onclick="delete_cake(<?php echo $row['cake_id'] ?>)">DELETE</button> </td>
+
+
+                                                        <button type="button" class="btn btn-primary" name="<?php echo $row['cake_id'] ?>-button" onclick="popular_cake(<?php echo $row['cake_id'] ?>,<?php echo $row['popular']?>)"><?php echo $popular_button ?></button>
+
+                                                        <br><br>
+
+                                                        <button type="button" class="btn btn-danger" name="<?php echo $row['cake_id'] ?>-button" onclick="delete_cake(<?php echo $row['cake_id'] ?>)">DELETE</button> </td>
 
                                                     </tr>
                                                     <?php
@@ -421,6 +451,30 @@
                         }
                     });
 
+            }
+        </script>
+
+        <script>
+            function popular_cake(cake_id, popular_status)
+            {
+                console.log(cake_id);
+                console.log(popular_status);
+                $.ajax({
+                    type : 'POST',
+                    url : 'submit/submit_cake_popular.php',
+                    data : {
+                        cake_id : cake_id,
+                        popular_status : popular_status
+                    },
+                    success : function(data){
+                        data = JSON.parse(data);
+                        console.log(data);
+                        swal(data.message, '', data.state);
+                        setTimeout(function(){
+                            location.reload();
+                        }, 3000);
+                    }
+                });
             }
         </script>
     </body>

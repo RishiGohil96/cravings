@@ -161,9 +161,31 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="waves-effect waves-dark" href="add_customer.php" aria-expanded="true">
-                                    <i class="fa fa-address-book-o"></i>
-                                    <span class="hide-menu"> Add Customer</span>
+                                <a href="#collapse_list_customers" class="collapse-toggle" data-toggle="collapse">
+                                   <i class="fa fa-address-book-o"></i>
+                                    <span class="hide-menu"> Customers </span>
+                                </a>
+                                <div id="collapse_list_customers" class="collapse">
+                                    <ul class="list-group">
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="customers_add.php" aria-expanded="false">
+                                            <i class="fa fa-user-plus"></i>
+                                            <span class="hide-menu"> Add Customers</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="customers_view.php" aria-expanded="true">
+                                            <i class="fa fa-users"></i>
+                                            <span class="hide-menu"> View Customers</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="stats.php" aria-expanded="true">
+                                    <i class="fa fa-line-chart"></i>
+                                    <span class="hide-menu"> Stats</span>
                                 </a>
                             </li>
                             <li>
@@ -286,6 +308,64 @@
                         </div>
                     </div>
                     <!-- End Upcoming Birthdays -->
+                    <!-- ============================================================== -->
+
+
+                    <!-- Orders Summary -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body" >
+                                   <h3 class="text-themecolor">Orders Summary</h3>
+                                    <?php
+
+                                    $query = "SELECT
+                                                SUM(IF(order_status = 'placed', 1,0)) AS `pending_orders`,
+                                                SUM(IF(order_status = 'confirmed', 1,0)) AS `confirmed_orders`,
+                                                SUM(IF(order_status = 'cancelled', 1,0)) AS `cancelled_orders`,
+                                                COUNT(order_status) AS `total`
+                                                FROM cravings_test_orders_details";
+                                    if($result = $conn->query($query))
+                                    {
+
+                                            ?>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Pending Orders</th>
+                                                            <th>Confirmed Orders</th>
+                                                            <th>Cancelled Orders</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                            <?php
+                                            while($row = mysqli_fetch_array($result))
+                                            {
+                                                echo "<tr>";
+                                                echo "<td>".$row['pending_orders']."</td>";
+                                                echo "<td>".$row['confirmed_orders']."</td>";
+                                                echo "<td>".$row['cancelled_orders']."</td>";
+                                                echo "<td>".$row['total']."</td>";
+                                                echo "</tr>";
+                                            }
+                                            ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <?php
+
+
+                                    }
+                                    else echo $conn->error;
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Orders Summary -->
                     <!-- ============================================================== -->
 
 

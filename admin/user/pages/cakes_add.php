@@ -161,9 +161,31 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="waves-effect waves-dark" href="add_customer.php" aria-expanded="true">
-                                    <i class="fa fa-address-book-o"></i>
-                                    <span class="hide-menu"> Add Customer</span>
+                                <a href="#collapse_list_customers" class="collapse-toggle" data-toggle="collapse">
+                                   <i class="fa fa-address-book-o"></i>
+                                    <span class="hide-menu"> Customers </span>
+                                </a>
+                                <div id="collapse_list_customers" class="collapse">
+                                    <ul class="list-group">
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="customers_add.php" aria-expanded="false">
+                                            <i class="fa fa-user-plus"></i>
+                                            <span class="hide-menu"> Add Customers</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="waves-effect waves-dark" href="customers_view.php" aria-expanded="true">
+                                            <i class="fa fa-users"></i>
+                                            <span class="hide-menu"> View Customers</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="waves-effect waves-dark" href="stats.php" aria-expanded="true">
+                                    <i class="fa fa-line-chart"></i>
+                                    <span class="hide-menu"> Stats</span>
                                 </a>
                             </li>
                             <li>

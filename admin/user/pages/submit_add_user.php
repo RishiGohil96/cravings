@@ -9,10 +9,18 @@ $address = $_POST['address'];
 
 //$birthday =  implode("-", array_reverse(explode("/", $birthday)));
 
-$query= "INSERT into cravings_test_customers(name, birthday, phone, eamil, address) values ('$name', '$birthday', '$phone', '$email',  '$address')";
-if($conn->query($query))
+$query= "INSERT into cravings_test_customers(name, birthday, phone, email, address) values (?, ?, ?, ?, ?)";
+if($stmt = $conn->prepare($query))
 {
-    echo "done";
+    $stmt->bind_param("sssss", $name, $birthday, $phone, $email, $address);
+    if($stmt->execute())
+    {
+        echo "done";
+    }
+    else
+    {
+        echo $conn->error;
+    }
 }
 else
 {

@@ -17,4 +17,5 @@
     {
       echo 'Message: ' .$e->getMessage();
     }
+mysqli_set_charset($conn,"utf8");
 ?>
