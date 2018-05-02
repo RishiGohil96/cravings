@@ -15,6 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="google-signin-client_id" content="901571492977-108qc682d2sfg686o1i37po8gsogssii.apps.googleusercontent.com"> <!-- google sign in -->
 <meta name="keywords" content="Cakes, Pastry, Dessert, Wedding Cakes, Birthday Cakes, Baptism Cakes, Cakes in Goa, Goa, Sweets in Goa, Cravings Goa, Cravings Cakes, Cravings Cake Shop Goa, Cravings Dessert, Cravings Parra, Chocolate Cake, Cheesecakes" />
+<meta name="theme-color" content="#FC01FB" />
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.ico" sizes="32x32" />
 <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.ico" sizes="16x16" />
@@ -98,6 +99,20 @@
 		<h2>About Us</h2>
 	</div>
 <!-- //innerpages_banner -->
+
+<!-- Vision Statement -->
+<div class="about_section">
+    <div class="container white-bg pad-20 about_right">
+        <h3 class="bold">Mission Statement : </h3>
+        <h3>To deliver cravings to every heart.</h3>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+
+
+
+<!-- //Vision Statement -->
+
 
 <!-- about section content -->
 <div class="about_section">
@@ -263,13 +278,14 @@
 
 <!-- Supportive js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery.redirect.js" charset="utf-8"></script>
+<script src="js/jquery.redirect.js"></script>
 <!-- //Supportive js -->
 
 <script src="js/pace.min.js"></script>
 <!-- google sign in -->
 
 <script type="text/javascript">
+
 function onSignIn(googleUser) {
 var profile = googleUser.getBasicProfile();
 var google_id = profile.getId(); // Do not send to your backend! Use an ID token instead.
@@ -277,8 +293,11 @@ var name = profile.getName();
 var img_url = profile.getImageUrl();
 var email = profile.getEmail(); // This is null if the 'email' scope is not present.
 console.log(google_id);
+console.log("sign-in");
 $.redirect("php/login.php",{google_id: google_id, name: name, img_url: img_url, email: email, redirect_location: 'about.php' });
 }
+
+
 </script>
 
 <!-- //google sign in -->

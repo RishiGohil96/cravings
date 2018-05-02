@@ -328,11 +328,12 @@
 							<div class="banner-wrap">
 								<div class="testimonials-grid">
 									<div class="testimonials-grid-left">
-										<img src="images/testimonials/t1.jpg" alt=" " class="img-responsive" />
+										<img src="images/t9.jpg" alt=" " class="img-responsive" />
 									</div>
 									<div class="testimonials-grid-right">
-										<p>Tastiest CAKES ever....Yummy#Awesome Designs</p>
-										<h4>Sheba Travasso</h4>
+										<p>Had given them such a short notice and they did a fab job despite paucity of time. The cake was absolutely delicious with the perfect sponge that a cake needs to have, the writing on top was superbly neat and they followed the exact instructions given to them! this is apart from delivering the cake on time ... absolutely bang on. Everyone loved it! If I were you, I would Keep Calm and Call Cravings!
+										Keep up the good work Savio!</p>
+										<h4>Preeti Dhar</h4>
 									</div>
 									<div class="clearfix"> </div>
 								</div>
@@ -352,23 +353,22 @@
 								</div>
 							</div>
 						</article>
-						<!--<article style="position: absolute; width: 100%; opacity: 0;">
+						<article style="position: absolute; width: 100%; opacity: 0;">
 							<div class="banner-wrap">
 								<div class="testimonials-grid">
 									<div class="testimonials-grid-left">
-										<img src="images/t2.jpg" alt=" " class="img-responsive" />
+										<img src="images/testimonials/t1.jpg" alt=" " class="img-responsive" />
 									</div>
 									<div class="testimonials-grid-right">
-										<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-											praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
-											excepturi sint occaecati cupiditate non provident. Duis maximus, velit posuere rutrum tempus, nibh ligula semper felis.</p>
-										<h4>Crisp Ali</h4>
+
+										<p>Tastiest CAKES ever....Yummy#Awesome Designs</p>
+										<h4>Sheba Travasso</h4>
 									</div>
 									<div class="clearfix"> </div>
 								</div>
 							</div>
 						</article>
-						<article style="position: absolute; width: 100%; opacity: 0;">
+						<!--<article style="position: absolute; width: 100%; opacity: 0;">
 							<div class="banner-wrap">
 								<div class="testimonials-grid">
 									<div class="testimonials-grid-left">

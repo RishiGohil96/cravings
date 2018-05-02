@@ -1,428 +1,604 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php
-    session_start();
-    if(!isset($_SESSION['admin']))
+<html lang="en" >
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116041965-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116041965-1');
+</script>
+
+<title>Cravings | Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="google-signin-client_id" content="901571492977-108qc682d2sfg686o1i37po8gsogssii.apps.googleusercontent.com"> <!-- google sign in -->
+<meta name="keywords" content="Cakes, Pastry, Dessert, Wedding Cakes, Birthday Cakes, Baptism Cakes, Cakes in Goa, Goa, Sweets in Goa, Cravings Goa, Cravings Cakes, Cravings Cake Shop Goa, Cravings Dessert, Cravings Parra, Chocolate Cake, Cheesecakes" />
+
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" href="images/favicon/favicon-32x32.ico" sizes="32x32" />
+<link rel="icon" type="image/png" href="images/favicon/favicon-16x16.ico" sizes="16x16" />
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" /><!-- bootstrap css -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--	modal -->
+<link rel="stylesheet" href="css/normalize.min.css">
+<link rel="stylesheet" href="css/animate.min.css">
+<link rel="stylesheet" href="css/rotate.css">
+<!--	//modal -->
+<link rel="stylesheet" type="text/css" href="css/pace.css" media="all">  <!-- pace css -->
+<link href="css/font-awesome.css" rel="stylesheet"> <!-- fontawesome css -->
+<link rel="stylesheet" href="css/sweetalert.css">
+<!--fonts-->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+<!--//fonts-->
+
+</head>
+<body>
+	<!--<audio src="music/background.mp3" autoplay>
+	<p>If you are reading this, it is because your browser does not support the audio element.     </p>
+	<embed src="music/background.mp3" width="180" height="90" hidden="true" />
+</audio>-->
+<div class="white-bg center" id="music">
+<audio id="myAudio" src="music/background.mp3" preload="auto">
+</audio>
+<a onClick="togglePlay()">Play/Pause music</a>
+</div>
+	<!-- header -->
+	<div class="header" id="home">
+		<div class="content white">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+						<a class="navbar-brand" href="index.php">
+							<img src="images/logo.png" alt="Cravings logo" class="logo"/>
+						</a>
+					</div>
+					<!--/.navbar-header-->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<nav>
+							<ul class="nav navbar-nav">
+								<li><a href="index.php" class="active">Home</a></li>
+								<li><a href="about.php">About </a></li>
+								<li><a href="gallery.php">Gallery</a></li>
+								<li><a href="contact.php">Mail Us</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user" aria-hidden="true"><b class="caret"></b></a>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<?php
+										session_start();
+										include ('php/config/db_config.php');
+										if (!isset($_SESSION['cravings_id']))
+										{
+										echo "<script>console.log('not set');</script>";
+										?>
+										<li><a class="g-signin2" data-onsuccess="onSignIn"></a></li> <!-- google sign in -->
+										<?php
+										}
+										else
+										{
+										echo '<script>console.log("set");</script>';
+										?>
+										<li><a href="orders.php">My Orders</a></li>
+										<li><a href="#" onclick="signOut();">Sign Out <span class="fa fa-sign-out" aria-hidden="true"></a></li>
+										<?php
+										}
+									 	?>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<!--/.navbar-collapse-->
+					<!--/.navbar-->
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- //header -->
+
+	<!-- banner slider -->
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="3" class=""></li>
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<div class="container">
+					<div class="carousel-caption">
+						<div class="col-md-6 slider_left">
+							<h2>We have something to fulfill everyone’s <span>sweet tooth.</span></h2>
+							<p></p>
+							<a href="#about" class="hvr-bounce-to-right read scroll"><span class="fa fa-birthday-cake" aria-hidden="true"></span>Read More</a>
+						</div>
+						<div class="col-md-6 slider_right">
+							<img src="images/cake.png" alt="cake1" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div class="item item2">
+				<div class="container">
+					<div class="carousel-caption">
+						<div class="col-md-6 slider_left">
+							<h3>Fresh baked cakes <span>throughout the day.</span></h3>
+							<p></p>
+							<a href="#about" class="hvr-bounce-to-right read scroll"><span class="fa fa-birthday-cake" aria-hidden="true"></span>Read More</a>
+						</div>
+						<div class="col-md-6 slider_right">
+							<img src="images/cake1.png" alt="cake1" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div class="item item3">
+				<div class="container">
+					<div class="carousel-caption">
+						<div class="col-md-6 slider_left">
+							<h3>There's something for <span>every occasion.</span></h3>
+							<p></p>
+							<a href="#about" class="hvr-bounce-to-right read scroll"><span class="fa fa-birthday-cake" aria-hidden="true"></span>Read More</a>
+						</div>
+						<div class="col-md-6 slider_right">
+							<img src="images/cake2.png" alt="cake1" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div class="item item4">
+				<div class="container">
+					<div class="carousel-caption">
+						<div class="col-md-6 slider_left">
+							<h3>Life is uncertain. <span>Eat dessert first.</span></h3>
+							<p></p>
+							<a href="#about" class="hvr-bounce-to-right read scroll"><span class="fa fa-birthday-cake" aria-hidden="true"></span>Read More</a>
+						</div>
+						<div class="col-md-6 slider_right">
+							<img src="images/cake4.png" alt="cake1" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					</div>
+			</div>
+		</div>
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			<span class="fa fa-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			<span class="fa fa-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+		<!-- The Modal -->
+	</div>
+	<!-- //banner slider -->
+<!-- welcome -->
+<div class="welcome"  id="about">
+	<div class="container white-bg pad-20">
+		<div class="col-md-6 welcome-w3lright">
+			<div class="pad-top-50">
+				<div> <img src="images/cravings_shop.jpg" alt="" class="img-responsive" /> </div>
+			</div>
+		</div>
+		<div class="col-md-6 welcome_left ">
+			<h3 class="agileits-title">Welcome To Cravings</h3>
+			<h4>Where we promise to satiate your sweet tooth.</h4>
+			<p>Having worked as a Sales Professional, for over a decade with brands such as Xerox, in India and overseas, Savio Travasso, had always a desire to do things differently. And with a passion for service along with his better half, Claudia specialized in baking and confectionary, Cravings was conceptualized. And thus, their outlet, Cravings was opened on the day of February 2, 2013. Cravings has something to fulfill one’s sweet tooth. Producing fresh stuff, they maintain high standard for ourselves which is a distinctive feature of their outlet. They believe in producing excellent quality products with personalized service. From rum balls to tarts, to specialty cakes and various delicious desserts which will satiate your sweet tooth. Their cakes and treats are baked fresh throughout the day.</p>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- //welcome -->
+
+<!-- /about -->
+	<div class="about">
+		<div class="container">
+			<div class="wthree_head_section">
+				<h3 class="heading">Know More About Cravings</h3>
+			</div>
+			<div class="agile_wthree_inner_grids">
+				<div class="col-md-12 about_agileinfo">
+					<h4>Cake for each occasion</h4>
+					<p>We offer cakes in a wide range of sizes, flavors, 3D Characters and themes such as, Angry Bird, Spiderman, Tom and Jerry, Doraemon, Chota Bheem, etc. We also design cakes for occasions such as Weddings, Communions, Baptism, Birthday celebrations, etc. Fondant cake and sugar crafted flowers adorn our cakes. We also take orders setting up dessert counters for parties. In the near future, We intend to extend to a wide range of savories as well, like croissants, sandwiches, etc. So come and satisfy your sweet tooth cravings here.</p>
+					</div>
+
+				<div class="col-md-12 about_agileinfo"><div class="mid-inner-info">
+					<div class="col-md-4 mid-inner-sec one">
+						<span class="fa fa-birthday-cake" aria-hidden="true"></span>
+						<h5>Delicious Cakes</h5>
+						<p>Black Forest, Coffee Mocha, Chocolate Truffle, Chocolate Madness, Ferrero Rocher Cake, Pineapple Cake.</p>
+
+					</div>
+					<div class="col-md-4 mid-inner-sec">
+						<span class="fa fa-cutlery" aria-hidden="true"></span>
+						<h5>Exotic Desserts</h5>
+						<p>Brownies, Choco Croissants, Choco Lava, Lemon Tart, Donuts, Fruit Truffle, Apple Pie, Swiss Roll.</p>
+
+					</div>
+						<div class="col-md-4 mid-inner-sec one">
+							<span class="fa fa-birthday-cake" aria-hidden="true"></span>
+							<h5>Muffins</h5>
+							<p>Plain Cupcakes, Strawberry, Chocolate, Blueberry, and much more...</p>
+
+						</div>
+
+						<div class="clearfix"></div>
+
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+<!--//about -->
+
+<!-- Popular cakes -->
+<div class="popular_cakes">
+	<div class="container">
+		<h3 class="heading">Most Popular cakes</h3>
+		<div class="cakes_grids">
+			<?php
+				$query="select cake_id, title, location from cravings_test_cake_details where popular=1";
+				$result= $conn->query($query);
+				if(mysqli_num_rows($result) > 0)
+				{
+					$popular_count = 0;
+					while($row= mysqli_fetch_assoc($result))
+					{
+						$popular_count++;
+						$cake_id = $row['cake_id'];
+						$location = $row['location'];
+						$title = $row['title'];
+						?>
+						<div class="col-md-4">
+							<a href="item.php?q=<?php echo $cake_id ?>">
+						<div class="cakes_grid1 white-bg">
+							<img src="<?php echo $location ?>" alt="popular cakes" height="250px"/>
+							<h3><?php echo $title ?></h3>
+						</div>
+						</a>
+						</div>
+						<?php
+						if($popular_count  % 3 == 0)
+						{
+							if($popular_count == 3)
+							{
+								?>
+								<div class="clearfix"></div>
+								<div class="cakes_bottom_grids">
+								<?php
+							}
+							else
+							{
+								?>
+								<div class="clearfix"></div>
+								</div>
+								<div class="cakes_bottom_grids">
+								<?php
+							}
+
+						}
+					}
+					if($popular_count >= 3)
+					{
+						?>
+						<div class="clearfix"></div>
+						</div>
+						<?php
+					}
+				}
+			 ?>
+
+
+			<div class="clearfix"></div>
+
+		</div>
+	</div>
+</div>
+<!-- //Popular cakes -->
+
+<!-- testimonials -->
+	<div class="testimonials">
+		<div class="container white-bg pad-20">
+		<h3 class="heading">Our Customer reviews</h3>
+			<div class="testimonials-grids">
+				<div class="wmuSlider example1 animated wow slideInUp" data-wow-delay=".5s">
+					<div class="wmuSliderWrapper">
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="testimonials-grid">
+									<div class="testimonials-grid-left">
+										<img src="images/t1.jpg" alt="Customer image" class="img-responsive" />
+									</div>
+									<div class="testimonials-grid-right">
+										<p>Had given them such a short notice and they did a fab job despite paucity of time. The cake was absolutely delicious with the perfect sponge that a cake needs to have, the writing on top was superbly neat and they followed the exact instructions given to them! this is apart from delivering the cake on time ... absolutely bang on. Everyone loved it! If I were you, I would Keep Calm and Call Cravings!
+										Keep up the good work Savio!</p>
+										<h4>Preeti Dhar</h4>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</article>
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="testimonials-grid">
+									<div class="testimonials-grid-left">
+										<img src="images/testimonials/t2.jpg" alt="Customer image" class="img-responsive" />
+									</div>
+									<div class="testimonials-grid-right">
+										<p>We at restaurant lua nova have always chosen " cravings" for all our sweetened occasions. Savio and claudia have always created something that was special and unique. Our guests never forget to recollect the desserts and cakes from cravings. Cheers to having many more celebrations brimming with your amazing confectioneries......mmmaahhh!!!</p>
+										<h4>Surya Sanders</h4>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</article>
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="testimonials-grid">
+									<div class="testimonials-grid-left">
+										<img src="images/testimonials/t3.jpg" alt=" " class="img-responsive" />
+									</div>
+									<div class="testimonials-grid-right">
+										<p>Delicious and in your mouth melting cakes and confectionery. Great creativity and excellent customer service. Way to go Savio and team. You are my first choice in Goa. Cheerio.</p>
+										<h4>Edwin D'sa</h4>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</article>
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="testimonials-grid">
+									<div class="testimonials-grid-left">
+										<img src="images/testimonials/t4.jpg" alt="Customer image" class="img-responsive" />
+									</div>
+									<div class="testimonials-grid-right">
+										<p>A 10/10 to the cravings family!! Savio and Claudia have been doing a tremendous job baking lovely melt-in-mouth cakes and more for every occasion. The cakes that we have ordered over the years and till date have been perfect. I would like to mention one of my favorite cakes at cravings is the baked chocolate cake. I absolutely loved this cake and taste great!
+										<br>Thank you for such lovely cakes .. keep going we would definitely recommend carvings to others</p>
+										<h4>Josephine D'cruz</h4>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</article>
+						<article style="position: absolute; width: 100%; opacity: 0;">
+							<div class="banner-wrap">
+								<div class="testimonials-grid">
+									<div class="testimonials-grid-left">
+										<img src="images/testimonials/t5.jpg" alt="Customer image" class="img-responsive" />
+									</div>
+									<div class="testimonials-grid-right">
+										<p>Freshest Products ever !!! Be they Cakes or Rum Balls or Apple pies. I have never had anything so fresh and absolutely delicious before. And what more can i say about the baked Cheese cake !! Its a CLASSIC !!</p>
+										<h4>Ashley Pereira</h4>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- //testimonials -->
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="w3_agile_footer_grids">
+				<div class="col-md-3 col-xs-6 w3_agile_footer_grid right">
+					<img src="images/logo.png" alt="logo">
+				</div>
+				<div class="col-md-3 col-xs-6 w3_agile_footer_grid">
+					<h3>Navigation</h3>
+					<ul class="agileits_w3layouts_footer_grid_list">
+						<li>
+							<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+							<a href="index.php">Home</a>
+						</li>
+						<li>
+							<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+							<a href="about.php">About Us</a>
+						</li>
+						<li>
+							<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+							<a href="gallery.php">Gallery</a>
+						</li>
+						<li>
+							<span class="fa fa-angle-double-right" aria-hidden="true"></span>
+							<a href="contact.php">Contact Us</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-xs-6 w3ls_address_mail_footer_grids w3_agile_footer_grid">
+					<h3>Contact Us</h3>
+					<div class="w3ls_footer_grid_left">
+						<div class="w3l-icon">
+							<span class="fa fa-map-marker" aria-hidden="true"></span>
+						</div>
+						<p>Fuldem Vaddo, Nagoa<br>
+							Near Nagoa Grande Hotel,<br>
+							Bardez, Goa.
+						</p>
+						<div class="clearfix"></div>
+					</div>
+					<div class="w3ls_footer_grid_left">
+						<div class="w3l-icon">
+							<span class="fa fa-whatsapp" aria-hidden="true"></span>
+						</div>
+						<p>+(91) 88053 09016
+							<span>+(91) 95525 59016</span>
+						</p>
+						<div class="clearfix"></div>
+					</div>
+					<div class="w3ls_footer_grid_left">
+						<div class="w3l-icon">
+							<span class="fa fa-envelope-o" aria-hidden="true"></span>
+						</div>
+						<p>
+							savio_travasso@yahoo.com
+							<span>
+
+							</span>
+						</p>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="col-md-3 col-xs-6 w3_agile_footer_grid">
+					<h3>Opening Hours</h3>
+					<ul>
+                        <li><span class="fa fa-clock-o" aria-hidden="true"></span> Monday - Saturday</li>
+                        <li>&emsp; 9:00 - 20:00</li>
+                        <li><span class="fa fa-clock-o" aria-hidden="true"></span> Sunday <span>Orders Only</span></li>
+                    </ul>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="agileinfo_copyright">
+				<p>© 2018 Cravings All Rights Reserved | Design by <a href="https://www.facebook.com/rocking.rishi96">Rishi Gohil</a>
+				</p>
+				<p>
+				    <a href="https://www.facebook.com/Cravings-168809469935870/"><i class="fa fa-facebook-square fa-2x icon-fb" aria-hidden="true"></i></a>
+				    <a href="https://www.instagram.com/cravings_goa/"><i class="fa fa-instagram fa-2x icon-instagram" aria-hidden="true"></i></a>
+				</p>
+			</div>
+		</div>
+	</div>
+<!-- //footer -->
+
+
+
+
+
+<!-- Supportive js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.redirect.js" charset="utf-8"></script>
+<script src="js/sweetalert.min.js"></script>
+<!-- //Supportive js -->
+<script src="js/pace.min.js"></script>
+
+<!-- google sign in -->
+
+<script type="text/javascript">
+function onSignIn(googleUser) {
+var profile = googleUser.getBasicProfile();
+var google_id = profile.getId(); // Do not send to your backend! Use an ID token instead.
+var name = profile.getName();
+var img_url = profile.getImageUrl();
+var email = profile.getEmail(); // This is null if the 'email' scope is not present.
+console.log(google_id);
+$.redirect("php/login.php",{google_id: google_id, name: name, img_url: img_url, email: email, redirect_location: 'index.php' });
+}
+</script>
+
+<!-- //google sign in -->
+
+<!-- google sign out -->
+<script type="text/javascript">
+function signOut()
     {
-        header('Location: login/index.html');
+        $.ajax({
+            type : 'POST',
+            url : 'php/logout.php'
+        })
+        .done(function(msg){
+            console.log(msg);
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+                location.reload();
+            });
+        });
     }
-    include ('config/db_config.php');
-?>
+function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+</script>
+<!-- //google sign out -->
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Favicon icon -->
-        <link rel="icon" type="image/png" href="../../../images/favicon/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="../../../images/favicon/favicon-16x16.png" sizes="16x16" />
+<script type="text/javascript">
+var myAudio = document.getElementById("myAudio");
 
-        <title>Cravings | Admin</title>
-        <!-- Bootstrap Core CSS -->
-        <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="css/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/custom.css">
-        <!-- You can change the theme colors from here -->
-        <link href="css/colors/default-dark.css" id="theme" rel="stylesheet">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-    </head>
+function togglePlay() {
+  return myAudio.paused ? myAudio.play() : myAudio.pause();
+};
+</script>
+<!-- banner bottom video script -->
+<script src="js/simplePlayer.js"></script>
+			<script>
+				$("document").ready(function() {
+					$("#video").simplePlayer();
+				});
+</script>
+<!-- //banner bottom video script -->
 
-    <body class="fix-header card-no-border fix-sidebar">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <div class="preloader">
-            <div class="loader">
-                <div class="loader__figure">Cravings - Admin Dashboard</div>
-                <p class="loader__label"></p>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- Main wrapper - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <div id="main-wrapper">
-            <!-- ============================================================== -->
-            <!-- Topbar header - style you can find in pages.scss -->
-            <!-- ============================================================== -->
-            <header class="topbar">
-                <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="index.php">
-                            <!-- Logo icon --><b>
-                            <img src="../../../images/logo.png" alt="homepage" class="dark-logo" width="90" />
-                        </b>
-                            <!--End Logo icon -->
-                        </a>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <div class="navbar-collapse">
-                        <!-- ============================================================== -->
-                        <!-- toggle and nav items -->
-                        <!-- ============================================================== -->
-                        <ul class="navbar-nav mr-auto">
-                            <!-- This is  -->
-                            <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a></li>
-                        </ul>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <ul class="navbar-nav my-lg-0">
-                            <!-- ============================================================== -->
-                            <!-- Search -->
-                            <!-- ============================================================== -->
+<!-- testimonials plugin script -->
+	<script src="js/jquery.wmuSlider.js"></script>
+	<script>
+		$('.example1').wmuSlider();
+	</script>
+<!-- testimonials plugin script -->
 
-                            <!-- ============================================================== -->
-                            <!-- Profile -->
-                            <!-- ============================================================== -->
-                            <li class="nav-item">
-                                <a class="nav-link waves-effect waves-dark" href="#"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <!-- ============================================================== -->
-            <!-- End Topbar header -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Left Sidebar - style you can find in sidebar.scss  -->
-            <!-- ============================================================== -->
-            <aside class="left-sidebar">
-                <!-- Sidebar scroll-->
-                <div class="scroll-sidebar">
-                    <!-- Sidebar navigation-->
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav">
-                            <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
-                            <li>
-                                <a href="#collapse_list" class="collapse-toggle" data-toggle="collapse">
-                                   <i class="mdi mdi-file-document"></i>
-                                    <span class="hide-menu"> Orders </span>
-                                </a>
-                                <div id="collapse_list" class="collapse">
-                                    <ul class="list-group">
-                                        <li>
-                                            <a class="waves-effect waves-dark" href="orders_pending.php" aria-expanded="false">
-                                            <i class="fa fa-exclamation"></i>
-                                            <span class="hide-menu"> Pending Orders</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="waves-effect waves-dark" href="orders_confirmed.php" aria-expanded="true">
-                                            <i class="fa fa-check"></i>
-                                            <span class="hide-menu"> Confirmed Orders</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="waves-effect waves-dark" href="orders_cancelled.php" aria-expanded="true">
-                                            <i class="fa fa-times"></i>
-                                            <span class="hide-menu"> Cancelled Orders</span>
-                                            </a>
-                                        </li>
+<!-- smooth scrolling js -->
+<script src="js/SmoothScroll.min.js"></script>
+<!-- smooth scrolling js -->
 
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#collapse_list_cakes" class="collapse-toggle" data-toggle="collapse">
-                                   <i class="mdi mdi-cake"></i>
-                                    <span class="hide-menu"> Cakes </span>
-                                </a>
-                                <div id="collapse_list_cakes" class="collapse">
-                                    <ul class="list-group">
-                                        <li>
-                                            <a class="waves-effect waves-dark" href="cakes_add.php" aria-expanded="false">
-                                            <i class="fa fa-plus"></i>
-                                            <span class="hide-menu"> Add Cake</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="waves-effect waves-dark" href="cakes_update.php" aria-expanded="true">
-                                            <i class="fa fa-check"></i>
-                                            <span class="hide-menu"> Update Cake</span>
-                                            </a>
-                                        </li>
+<!-- start-smooth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
 
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#collapse_list_customers" class="collapse-toggle" data-toggle="collapse">
-                                   <i class="fa fa-address-book-o"></i>
-                                    <span class="hide-menu"> Customers </span>
-                                </a>
-                                <div id="collapse_list_customers" class="collapse">
-                                    <ul class="list-group">
-                                        <li>
-                                            <a class="waves-effect waves-dark" href="customers_add.php" aria-expanded="false">
-                                            <i class="fa fa-user-plus"></i>
-                                            <span class="hide-menu"> Add Customers</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="waves-effect waves-dark" href="customers_view.php" aria-expanded="true">
-                                            <i class="fa fa-users"></i>
-                                            <span class="hide-menu"> View Customers</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="waves-effect waves-dark" href="stats.php" aria-expanded="true">
-                                    <i class="fa fa-line-chart"></i>
-                                    <span class="hide-menu"> Stats</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="waves-effect waves-dark" href="#" aria-expanded="true" onclick=logout()>
-                                    <i class="fa fa-sign-out"></i>
-                                    <span class="hide-menu"> Log Out</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- End Sidebar navigation -->
-                </div>
-                <!-- End Sidebar scroll-->
-            </aside>
-            <!-- ============================================================== -->
-            <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Page wrapper  -->
-            <!-- ============================================================== -->
-            <div class="page-wrapper">
-                <!-- ============================================================== -->
-                <!-- Container fluid  -->
-                <!-- ============================================================== -->
-                <div class="container-fluid">
-                    <!-- ============================================================== -->
-                    <!-- Bread crumb and right sidebar toggle -->
-                    <!-- ============================================================== -->
-                    <div class="row page-titles">
-                        <div class="col-md-5 align-self-center">
-                            <h3 class="text-themecolor">Home</h3>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- End Bread crumb and right sidebar toggle -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content -->
-                    <!-- ============================================================== -->
-                    <!-- Pending Orders -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <?php
-                                    $query = "SELECT count('order_status') as count from cravings_test_orders_details where order_status='placed' ";
-
-                                    if($result = $conn->query($query))
-                                    {
-                                        while($row = mysqli_fetch_array($result))
-                                        {
-                                            echo "<a href='orders_pending.php'><h2>".$row['count']." pending orders!</a></h2>";
-                                        }
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Pending Orders -->
-                    <!-- ============================================================== -->
-
-                    <!-- Upcoming Birthdays -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body upcoming_birthdays" >
-                                   <h3 class="text-themecolor">Upcoming Birthdays</h3>
-                                    <?php
-                                    $today = date('2000-m-d');
-                                    $next_week = date('2000-m-d', strtotime('+1 week'));
-                                    $query = "SELECT * FROM `cravings_test_customers` WHERE birthday BETWEEN '$today' AND '$next_week'  ORDER BY birthday";
-                                    if($result = $conn->query($query))
-                                    {
-                                        if(mysqli_num_rows($result) == 0)
-                                        {
-                                            ?>
-                                            <h4>No Birthdays this week!</h4>
-                                            <?php
-                                        }
-                                        else
-                                        {
-                                            ?>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Phone</th>
-                                                            <th>e-mail</th>
-                                                            <th>Birthday</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                            <?php
-                                            while($row = mysqli_fetch_array($result))
-                                            {
-                                                $birthday = explode('-',$row['birthday']);
-                                                $birthday = $birthday[2].'/'.$birthday[1];
-                                                echo "<tr>";
-                                                echo "<td>".$row['name']."</td>";
-                                                echo "<td>".$row['phone']."</td>";
-                                                echo "<td>".$row['email']."</td>";
-                                                echo "<td>".$birthday."</td>";
-                                                echo "</tr>";
-                                            }
-                                            ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <?php
-                                        }
-
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Upcoming Birthdays -->
-                    <!-- ============================================================== -->
+		setTimeout(function(){
+        swal("Enjoy the music", "You can play/pause our happy music at the top of the window", "info");
+	   }, 5000);
+	});
+</script>
 
 
-                    <!-- Orders Summary -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body" >
-                                   <h3 class="text-themecolor">Orders Summary</h3>
-                                    <?php
+	<!-- here starts scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			});
+	</script>
+	<!-- //here ends scrolling icon -->
 
-                                    $query = "SELECT
-                                                SUM(IF(order_status = 'placed', 1,0)) AS `pending_orders`,
-                                                SUM(IF(order_status = 'confirmed', 1,0)) AS `confirmed_orders`,
-                                                SUM(IF(order_status = 'cancelled', 1,0)) AS `cancelled_orders`,
-                                                COUNT(order_status) AS `total`
-                                                FROM cravings_test_orders_details";
-                                    if($result = $conn->query($query))
-                                    {
+<!-- move to top-js-files -->
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+<!-- //move to top-js-files -->
 
-                                            ?>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Pending Orders</th>
-                                                            <th>Confirmed Orders</th>
-                                                            <th>Cancelled Orders</th>
-                                                            <th>Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                            <?php
-                                            while($row = mysqli_fetch_array($result))
-                                            {
-                                                echo "<tr>";
-                                                echo "<td>".$row['pending_orders']."</td>";
-                                                echo "<td>".$row['confirmed_orders']."</td>";
-                                                echo "<td>".$row['cancelled_orders']."</td>";
-                                                echo "<td>".$row['total']."</td>";
-                                                echo "</tr>";
-                                            }
-                                            ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <?php
+<script type="text/javascript" src="js/bootstrap.js"></script><!-- bootstrap js file -->
 
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script> <!-- google sign in -->
 
-                                    }
-                                    else echo $conn->error;
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Orders Summary -->
-                    <!-- ============================================================== -->
-
-
-                    <!-- ============================================================== -->
-                    <!-- End PAge Content -->
-                    <!-- ============================================================== -->
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Container fluid  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- footer -->
-                <!-- ============================================================== -->
-                <footer class="footer">
-                    © 2018 Cravings - Admin Dashboard
-                </footer>
-                <!-- ============================================================== -->
-                <!-- End footer -->
-                <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Page wrapper  -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Wrapper -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- All Jquery -->
-        <!-- ============================================================== -->
-        <script src="../assets/plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="../assets/plugins/bootstrap/js/popper.min.js"></script>
-        <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="js/perfect-scrollbar.jquery.min.js"></script>
-        <!--Wave Effects -->
-        <script src="js/waves.js"></script>
-        <!--Menu sidebar -->
-        <script src="js/sidebarmenu.js"></script>
-        <!--Custom JavaScript -->
-        <script src="js/custom.min.js"></script>
-        <!-- Redirect JS -->
-        <script src="../../../js/jquery.redirect.js"></script>
-
-        <script type="text/javascript">
-            function logout() {
-                 $.ajax({
-                    method: "POST",
-                    url: "login/logout.php"
-                })
-                .done(function() {
-                    console.log('logged out');
-                    window.location = 'login/';
-                });
-            }
-        </script>
-    </body>
-
+</body>
 </html>

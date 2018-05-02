@@ -227,7 +227,7 @@ ul.forms_right li {
 }
 
 .navbar-default a.navbar-brand h1 .fa {
-	color: #ed1b2e;
+	color: #EB1FF1;
 	margin-right: 3px;
 }
 .navbar-default .navbar-nav>li>a {
@@ -242,20 +242,20 @@ ul.forms_right li {
 
 .navbar-nav>li>a.active {
 	color: #ffffff;
-	background: #ed1b2e;
+	background: #EB1FF1;
 }
 
 .navbar-default .navbar-nav>.open>a,
 .navbar-default .navbar-nav>.open>a:hover,
 .navbar-default .navbar-nav>.open>a:focus {
 	color: #fff;
-	background: #ed1b2e;
+	background: #EB1FF1;
 }
 
 .navbar-default .navbar-nav>li>a:hover,
 .navbar-default .navbar-nav>li>a:focus {
 	color: #fff;
-	background: #ed1b2e;
+	background: #EB1FF1;
 }
 
 .navbar-default .navbar-brand label {
@@ -391,7 +391,7 @@ ul.dropdown-menu:hover a.s-menu {
 .dropdown-menu>li>a:focus {
     color: #fff;
     text-decoration: none;
-    background-color: #ed1b2e;
+    background-color: #EB1FF1;
 }
 
 .multi-column-dropdown li a:hover {
@@ -455,6 +455,7 @@ b.fa.fa-caret-right {
 .about_right h3.bold {
     font-weight: 600;
 	text-transform: capitalize;
+    color : #EB1FF1;
 }
 .cakeimg{
 	padding: 0 5px;
@@ -496,7 +497,7 @@ b.fa.fa-caret-right {
   left: 0;
   right: 0;
   bottom: 0;
-  background:#ed1b2e;
+  background:#EB1FF1;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;
@@ -547,7 +548,7 @@ a.read,a.read2{
     color: #333;
 }
 .blog_grid p span.fa {
-    color: #ed1b2e;
+    color: #EB1FF1;
 }
 .blog_grid h3 a{
     font-size: 17px;
@@ -620,17 +621,17 @@ a.read,a.read2{
 }
 .nbs-flexisel-nav-left {
 	left: -5%;
-    background:url(../images/left.png) no-repeat no-repeat 3px 6px #ed1b2e;
+    background:url(../images/left.png) no-repeat no-repeat 3px 6px #EB1FF1;
 }
 .nbs-flexisel-nav-right {
 	right: -5%;
-	background:url(../images/right.png) no-repeat no-repeat 3px 6px #ed1b2e;
+	background:url(../images/right.png) no-repeat no-repeat 3px 6px #EB1FF1;
 }
 /*--//flexisel--*/
 
 /*-- subscribe --*/
 .subscribe{
-    background: #ed1b2e;
+    background: #EB1FF1;
 	padding: 4em 0;
 }
 .subscribe h3.heading {
